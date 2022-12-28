@@ -17,6 +17,11 @@ const user = [
 app.get('/users',(req,res)=>{
     res.send(user);
 })
+app.get('/users/:id',(req,res)=>{
+    const element = req.params.id;
+    const member = user.find(index=>index.id == element);
+    res.send(member);
+})
 
 app.listen(port,()=>{
     console.log('going in 2500');
