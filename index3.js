@@ -1,7 +1,10 @@
 
 const express = require('express');
 const app = express();
-const port = 2100;
+const port = 2100;let cors = require("cors");
+
+
+app.use(cors());
 
 const user = [
     { name : 'rasel', id: 1 , profession : 'web developer'},
