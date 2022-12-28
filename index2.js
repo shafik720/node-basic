@@ -1,12 +1,12 @@
+
 const express = require('express');
 const app = express();
 const port = 2500;
 
 app.get('/',(req,res)=>{
-    res.send('ok got it');
+    res.send('another try');
 })
 
-
 app.listen(port,()=>{
-    console.log('listening to port 2500');
+    console.log('going in 2500');
 })
