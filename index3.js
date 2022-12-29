@@ -28,7 +28,10 @@ app.get('/users/:id',(req, res)=>{
 
 app.post('/user',(req,res)=>{
     console.log('data request for ', req.body);
-    res.send('success');
+    const newUser = req.body;
+    newUser.id = user.length + 1 ;
+    user.push(newUser);
+    res.send(newUser);
 })
 
 app.listen(port, ()=>{
