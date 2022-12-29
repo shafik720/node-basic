@@ -5,6 +5,7 @@ const port = 2100;let cors = require("cors");
 
 
 app.use(cors());
+app.use(express.json());
 
 const user = [
     { name : 'rasel', id: 1 , profession : 'web developer'},
@@ -24,6 +25,12 @@ app.get('/users/:id',(req, res)=>{
     const users =  user.find(index=>index.id === parseInt(id));
     res.send(users);
 })
+
+app.post('/user',(req,res)=>{
+    console.log('data request for ', req.body);
+    res.send('success');
+})
+
 app.listen(port, ()=>{
     console.log('going for 2100');
 });
