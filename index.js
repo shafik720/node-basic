@@ -31,14 +31,15 @@ async function run(){
         //     res.send(result);
         //     console.log(`User is installed with id : ${result.insertedId} `)
         // });
-        app.post('/user', (req, res)=>{
+        app.post('/user', async(req, res)=>{
             const newUser = req.body;
             console.log('requesting new user', newUser);
-            res.send({result : 'success'})
+            const result = await userCollection.insertOne(newUser);
+            res.send(result) 
         })
     }
     finally{
-        await client.close();
+        // await client.close();
     }
 }
 
