@@ -1,8 +1,7 @@
-
 const express = require('express');
 const app = express();
-const port = 2100;
-let cors = require("cors");
+const port = 3200;
+let cors = require('cors');
 
 app.use(cors());
 app.use(express.json());
@@ -15,25 +14,20 @@ const user = [
 ]
 
 app.get('/',(req, res)=>{
-    res.send('ok go on');
-})
-app.get('/users',(req,res)=>{
-    res.send(user);
-})
-app.get('/users/:id',(req, res)=>{
-    const id = req.params.id;
-    const users =  user.find(index=>index.id === parseInt(id));
-    res.send(users);
+    res.send('got it ');
 })
 
-app.post('/user',(req,res)=>{
-    console.log('data request for ', req.body);
+app.get('/user',(req, res)=>{
+    res.send(user);
+})
+
+app.post('/user',(req, res)=>{
     const newUser = req.body;
     newUser.id = user.length + 1 ;
     user.push(newUser);
     res.send(newUser);
 })
 
-app.listen(port, ()=>{
-    console.log('going for 2100');
-});
+app.listen(port,()=>{
+    console.log('listening to port 3200');
+})
