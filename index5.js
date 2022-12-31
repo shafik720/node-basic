@@ -1,4 +1,4 @@
-
+/* 
 const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -22,15 +22,10 @@ async function run(){
     try{
         await client.connect();
         const userCollection = client.db('foodexpress').collection('all food');
-        // const user = {name: 'Abir Rahman', email :'abir@gmail.com'};
-        // const result = await userCollection.insertOne(user);
-        // console.log(`User is installed with id : ${result.insertedId} `)
-        
-        app.post('/user', (req, res)=>{
-            const newUser = req.body;
-            console.log('requesting new user ', newUser);
-            res.send(newUser);
-        })
+        const user = {name: 'Abir Rahman', email :'abir@gmail.com'};
+        const result = await userCollection.insertOne(user);
+
+        console.log(`User is installed with id : ${result.insertedId} `)
     }
     finally{
         await client.close();
@@ -42,4 +37,4 @@ run().catch(console.dir);
 
 app.listen(port, ()=>{
     console.log('trying 2nd time');
-})
+}) */
