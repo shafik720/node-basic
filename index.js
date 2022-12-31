@@ -1,28 +1,31 @@
 
 const express = require('express');
+const cors = require('cors');
+const { MongoClient, ServerApiVersion } = require('mongodb');
+
 const app = express();
 const port = 5000;
+
+app.use(cors());
+app.use(express.json());
 
 app.get('/',(req, res)=>{
     res.send('another 2nd try');
 })
 
-const user = [
-    { name : 'rasel', id: 1 , profession : 'web developer'},
-    { name : 'abir', id: 2 , profession : 'banker '},
-    { name : 'shafik', id: 3 , profession : 'mariner'},
-    { name : 'surjo', id: 4 , profession : 'job holder'}
-]
+// user : rasel
+// pass : Bwv139VgeyUuFiAC
 
-app.get('/users',(req, res)=>{
-    res.send(user[2]);
-})
+const uri = "mongodb+srv://rasel:Bwv139VgeyUuFiAC@cluster0.0ihcm8w.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+    console.log('connected successfully !');
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
 
-app.get('/users/:id',(req,res)=>{
-    console.log(req.params);
-    const id = req.params.id;
-    res.send( user[id]);
-})
+
 
 app.listen(port, ()=>{
     console.log('trying 2nd time');
