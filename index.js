@@ -2,7 +2,6 @@
 const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion } = require('mongodb');
-// const MongoClient = require('mongodb').MongoClient;
 
 const app = express();
 const port = 5000;
@@ -11,12 +10,12 @@ app.use(cors());
 app.use(express.json());
 
 
-
 // user : rasel
 // pass : 15kMpBXxqfu3liKz
 
 const uri = "mongodb+srv://rasel:15kMpBXxqfu3liKz@cluster0.0ihcm8w.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+
 async function run(){
     try{
         await client.connect();
