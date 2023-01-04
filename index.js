@@ -20,16 +20,14 @@ async function run(){
     try{
         await client.connect();
         const userCollection = client.db('foodexpress').collection('all food');
-        // const user = {name: 'ad sen', email :'tusar@tusar.com'};
-        // const result = await userCollection.insertOne(user);
         
-        // app.post('/user', async(req, res)=>{
-        //     const newUser = req.body;
-        //     console.log('requesting new user ', newUser);
-        //     const result = await userCollection.insertOne(newUser);
-        //     res.send(result);
-        //     console.log(`User is installed with id : ${result.insertedId} `)
-        // });
+        app.get('/user',async(req,res)=>{
+            const query = {} ;
+            const cursor = userCollection.find(query);
+            const users = await cursor.toArray();
+            res.send(users);
+        })
+
         app.post('/user', async(req, res)=>{
             const newUser = req.body;
             console.log('requesting new user', newUser);
