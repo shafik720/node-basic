@@ -1,7 +1,8 @@
 
 const express = require('express');
 const cors = require('cors');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+// const ObjectId = require('mongodb').ObjectId;
 
 const app = express();
 const port = 5000;
@@ -28,11 +29,19 @@ async function run(){
             res.send(users);
         })
 
+        // add a new user
         app.post('/user', async(req, res)=>{
             const newUser = req.body;
-            console.log('requesting new user', newUser);
             const result = await userCollection.insertOne(newUser);
             res.send(result) 
+        })
+
+        // delete a user
+        app.delete('/user/:id', async(req, res)=>{
+            const id = req.params.id;
+            const query = {_id : ObjectId(id)};
+            const result = await userCollection.deleteOne(query);
+            res.send(result);
         })
     }
     finally{
