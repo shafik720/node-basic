@@ -33,6 +33,8 @@ async function run() {
         res.send(result);
     
     })
+
+    // finding a user 
     } finally {
     //   await client.close();
     }
