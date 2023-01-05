@@ -42,11 +42,35 @@ async function run() {
         res.send(result);
     })
 
+    //find a user
+    app.get('/user/:id', async(req, res)=>{
+        const id = req.params.id;
+        const query = {_id : ObjectId(id)};
+        const result = await userCollection.findOne(query);
+        res.send(result);
+    })
+
     // delete a user
     app.delete('/user/:id', async(req, res)=>{
         const id = req.params.id;
         const query = {_id : ObjectId(id)};
         const result = await userCollection.deleteOne(query);
+        res.send(result);
+    })
+
+    // update a user
+    app.put('/user/:id', async(req, res)=>{
+        const id = req.params.id;
+        const users = req.body;
+        const filter = {_id : ObjectId(id)};
+        const options = { upsert: true };
+        const updatedDoc = {
+            $set: {
+              name : users.name,
+              email : users.email
+            },
+          };
+        const result = await userCollection.updateOne(filter, updatedDoc, options);
         res.send(result);
     })
 
