@@ -34,13 +34,21 @@ async function run() {
     
     })
 
-    // finding a user 
+    // finding all user 
     app.get('/user', async(req, res)=>{
         const query = {};
         const cursor = userCollection.find(query);
         const users = await cursor.toArray();
         res.send(users);
     })
+
+    // delete a user
+    app.delete('/user', async(req, res)=>{
+        const query = {};
+        const cursor = userCollection.find(query);
+    })
+
+
     } finally {
     //   await client.close();
     }
